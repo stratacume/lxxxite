@@ -1,0 +1,86 @@
+frontend/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List. Sell. Settle.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>List. Sell. Settle.</h1>
+    </header>
+    <section id="auth-section" style="display: none;">
+        <div id="auth-form">
+            <h2>Login / Sign Up</h2>
+            <form id="auth-form-element">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="button" onclick="signUp()">Sign Up</button>
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <button onclick="logout()" id="logout-button" style="display: none;">Logout</button>
+        </div>
+    </section>
+    <section id="main-section" style="display: none;">
+        <div id="listing-form">
+            <h2>List Your Property</h2>
+            <form id="property-form">
+                <label for="address">Property Address:</label>
+                <input type="text" id="address" name="address" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <label for="price">Asking Price (NZD):</label>
+                <input type="number" id="price" name="price" required>
+                <label for="seller-contact">Your Contact Info (Phone/Email):</label>
+                <input type="text" id="seller-contact" name="seller-contact" required>
+                <label for="images">Upload Images (Up to 10):</label>
+                <input type="file" id="images" name="images" accept="image/*" multiple>
+                <button type="submit">List Property</button>
+            </form>
+        </div>
+        <div id="listings">
+            <h2>Properties for Sale</h2>
+            <div id="property-list"></div>
+        </div>
+        <div id="agreement-section">
+            <h2>Create Sale & Purchase Agreement</h2>
+            <form id="agreement-form">
+                <label for="buyer">Buyer Name:</label>
+                <input type="text" id="buyer" name="buyer" required>
+                <label for="seller">Seller Name:</label>
+                <input type="text" id="seller" name="seller" required>
+                <label for="property-address">Property Address:</label>
+                <input type="text" id="property-address" name="property-address" required>
+                <label for="clauses">Select Conditions:</label>
+                <div id="clause-options"></div>
+                <button type="button" onclick="generateAgreement()">Generate Agreement PDF</button>
+            </form>
+        </div>
+        <div id="lawyer-section">
+            <h2>Forward to Lawyer or Conveyancer</h2>
+            <form id="lawyer-form">
+                <label for="lawyer-email">Lawyer/Conveyancer Email:</label>
+                <input type="email" id="lawyer-email" name="lawyer-email" required>
+                <button type="button" onclick="forwardToLawyer()">Send to Lawyer/Conveyancer</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p><a href="privacy-policy.html" target="_blank">Privacy Policy</a></p>
+        <p>Disclaimer: List. Sell. Settle. is not a legal service and does not provide legal advice. All agreements must be reviewed by a qualified lawyer or conveyancer under New Zealand law.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="firebase.js"></script>
+    <script src="clauses.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
